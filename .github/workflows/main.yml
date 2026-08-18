@@ -1,0 +1,56 @@
+name: Build Windows 11 Maintenance Center
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore canonical project
+        shell: pwsh
+        run: dotnet restore .\Windows11MaintenanceCenter.csproj
+
+      - name: Publish canonical project
+        shell: pwsh
+        run: |
+          dotnet publish .\Windows11MaintenanceCenter.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:WindowsPackageType=None `
+            -p:WindowsAppSDKSelfContained=true `
+            -p:SelfContained=true `
+            -p:EnableMsixTooling=true `
+            -p:PublishSingleFile=true `
+            -p:IncludeAllContentForSelfExtract=true
+
+      - name: Verify final EXE
+        shell: pwsh
+        run: |
+          $publish = "bin\Release\net8.0-windows10.0.22621.0\win-x64\publish"
+          if (-not (Test-Path $publish)) { throw "Publish directory not found: $publish" }
+          $exe = Join-Path $publish "Windows11MaintenanceCenter.exe"
+          if (-not (Test-Path $exe)) { throw "Windows11MaintenanceCenter.exe not found." }
+          $size = (Get-Item $exe).Length
+          if ($size -lt 1000000) { throw "EXE unexpectedly small: $size bytes" }
+          Write-Host "Verified EXE: $exe ($size bytes)"
+
+      - name: Upload final EXE package
+        uses: actions/upload-artifact@v6
+        with:
+          name: Windows11MaintenanceCenter-win-x64
+          path: bin/Release/net8.0-windows10.0.22621.0/win-x64/publish/**
+          if-no-files-found: error
