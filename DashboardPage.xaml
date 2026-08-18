@@ -1,0 +1,41 @@
+<Page
+ x:Class="Windows11MaintenanceCenter.Views.DashboardPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <ScrollViewer>
+  <StackPanel Padding="32" Spacing="18">
+   <TextBlock Text="Windows 11 Maintenance Center" FontSize="32" FontWeight="SemiBold"/>
+   <TextBlock Text="Utility conservativa per controllare Windows, mantenerlo aggiornato e lasciarlo il più vicino possibile alla configurazione Microsoft standard."
+              Opacity="0.75" TextWrapping="Wrap"/>
+   <InfoBar IsOpen="True" Severity="Success"
+            Title="Modalità conservativa"
+            Message="La manutenzione ordinaria controlla senza riparare. Gli aggiornamenti sono separati e richiedono una conferma."/>
+   <Grid ColumnSpacing="12">
+    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+    <Border Grid.Column="0" Padding="18" CornerRadius="12">
+     <StackPanel Spacing="8">
+      <TextBlock Text="1 · CONTROLLA" FontSize="13" FontWeight="SemiBold" Opacity="0.7"/>
+      <TextBlock Text="Windows sta bene?" FontSize="20" FontWeight="SemiBold"/>
+      <TextBlock Text="DISM, file di sistema, disco, servizi e riavvio pendente." TextWrapping="Wrap"/>
+      <Button Content="Controlla il sistema" Click="Health_Click" HorizontalAlignment="Left"/>
+     </StackPanel>
+    </Border>
+    <Border Grid.Column="1" Padding="18" CornerRadius="12">
+     <StackPanel Spacing="8">
+      <TextBlock Text="2 · AGGIORNA" FontSize="13" FontWeight="SemiBold" Opacity="0.7"/>
+      <TextBlock Text="Tieni aggiornato" FontSize="20" FontWeight="SemiBold"/>
+      <TextBlock Text="Windows e applicazioni. Le modifiche richiedono conferma." TextWrapping="Wrap"/>
+      <Button Content="Gestisci aggiornamenti" Click="Updates_Click" HorizontalAlignment="Left"/>
+     </StackPanel>
+    </Border>
+   </Grid>
+   <Border Padding="18" CornerRadius="12">
+    <StackPanel Spacing="6">
+     <TextBlock Text="COSA NON FA" FontSize="13" FontWeight="SemiBold" Opacity="0.7"/>
+     <TextBlock Text="Nessun optimizer, nessun registry cleaner, nessun tweak, nessuna pulizia aggressiva, nessun reset dei servizi, nessun riavvio automatico." TextWrapping="Wrap"/>
+    </StackPanel>
+   </Border>
+   <Button Content="Diagnostica avanzata" Click="Diagnostics_Click" HorizontalAlignment="Left"/>
+  </StackPanel>
+ </ScrollViewer>
+</Page>

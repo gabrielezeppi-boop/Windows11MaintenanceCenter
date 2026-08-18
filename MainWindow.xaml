@@ -1,0 +1,35 @@
+<Window
+    x:Class="Windows11MaintenanceCenter.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Windows 11 Maintenance Center">
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+    <Grid>
+        <NavigationView x:Name="Nav"
+                        IsSettingsVisible="False"
+                        IsBackButtonVisible="Collapsed"
+                        PaneDisplayMode="Left"
+                        SelectionChanged="Nav_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Dashboard" Tag="Dashboard">
+                    <NavigationViewItem.Icon><SymbolIcon Symbol="Home"/></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Stato e integrità" Tag="Health">
+                    <NavigationViewItem.Icon><SymbolIcon Symbol="Repair"/></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Aggiornamenti" Tag="Updates">
+                    <NavigationViewItem.Icon><SymbolIcon Symbol="Sync"/></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Diagnostica avanzata" Tag="Diagnostics">
+                    <NavigationViewItem.Icon><SymbolIcon Symbol="Find"/></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Log" Tag="Logs">
+                    <NavigationViewItem.Icon><SymbolIcon Symbol="Document"/></NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="ContentFrameControl"/>
+        </NavigationView>
+    </Grid>
+</Window>

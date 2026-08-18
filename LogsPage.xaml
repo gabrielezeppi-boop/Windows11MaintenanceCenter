@@ -1,0 +1,9 @@
+<Page x:Class="Windows11MaintenanceCenter.Views.LogsPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <StackPanel Padding="32" Spacing="14">
+  <TextBlock Text="Log" FontSize="30" FontWeight="SemiBold"/>
+  <TextBlock Text="Le sessioni sono salvate in %LOCALAPPDATA%\Windows11MaintenanceCenter\Logs."/>
+  <Button Content="Apri cartella log" Click="Open_Click" HorizontalAlignment="Left"/>
+ </StackPanel>
+</Page>

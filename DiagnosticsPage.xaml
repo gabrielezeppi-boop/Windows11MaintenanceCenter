@@ -1,0 +1,31 @@
+<Page
+ x:Class="Windows11MaintenanceCenter.Views.DiagnosticsPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <ScrollViewer>
+  <StackPanel Padding="28" Spacing="12">
+   <TextBlock Text="Diagnostica avanzata" FontSize="30" FontWeight="SemiBold"/>
+   <TextBlock Text="Informazioni più tecniche, sempre in modalità conservativa." Opacity="0.75"/>
+   <StackPanel Spacing="8">
+    <Button Content="Informazioni del Registro" Click="Registry_Click"/>
+    <Button Content="File hive del Registro" Click="Hive_Click"/>
+    <Button Content="Copie Shadow" Click="Shadow_Click"/>
+    <Button Content="Test controllato hive SYSTEM" Click="HiveTest_Click"/>
+   </StackPanel>
+   <Border Padding="18" CornerRadius="12">
+    <StackPanel Spacing="6">
+     <TextBlock Text="STATO" FontSize="13" FontWeight="SemiBold" Opacity="0.75"/>
+     <TextBlock x:Name="StatusLabel" Text="PRONTO" FontSize="22" FontWeight="SemiBold"/>
+     <TextBlock x:Name="StatusSummary" Text="Seleziona un controllo." TextWrapping="Wrap"/>
+     <TextBlock x:Name="StatusDetail" Opacity="0.75" TextWrapping="Wrap"/>
+     <TextBlock x:Name="Elapsed" Text="Tempo trascorso: 00:00" Opacity="0.75"/>
+     <ProgressBar x:Name="Progress" IsIndeterminate="False" Height="5"/>
+    </StackPanel>
+   </Border>
+   <Expander Header="Dettagli tecnici">
+    <TextBox x:Name="Output" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
+             ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+   </Expander>
+  </StackPanel>
+ </ScrollViewer>
+</Page>
